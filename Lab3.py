@@ -63,24 +63,24 @@ printList(e)
 
 summ_ = 0
 for i in range(0, m//2):
-    for j in [0, i+1]:
+    if i == 0: summ_ -= c[i][j]
+    for j in [0, i]:
         summ_ += c[i][j]
-        if i == 0: summ_ -= c[i][j]
 for i in range(m // 2, m):
-    for j in [0, m-i]:
+    if i == m-1: summ_ -= c[i][j]
+    for j in [0, m-i-1]:
         summ_ += c[i][j]
-        if i == m-1: summ_ -= c[i][j]
 print("B С сумма чисел, по периметру области 3 = ", summ_)
 
 mult_ = 1
 for j in range(0, m//2):
+    if j == 0: mult_ /= c[i][j]
     for i in [m-1, m-j-1]:
         mult_ *= c[i][j]
-        if j == 0: mult_ /= c[i][j]
 for j in range(m//2, m):
-    for i in [0, m-i-1]:
+    if j == m-1: mult_ /= c[i][j]
+    for i in [j, m-1]:
         mult_ *= c[i][j]
-        if j == m-1: mult_ /= c[i][j]
 print("В С произведение чисел по периметру области 2 = ", mult_)
 
 if summ_ > mult_:
