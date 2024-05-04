@@ -2,10 +2,6 @@
 #Для каждого числа через тире вывести прописью первую цифру и четные цифры.
 #Исопльзовать re
 import re
-def checkNum(str_num):
-    if re.match("^[02468]+$", str_num[0]): return False
-    if len(str_num) - len(re.sub(r"[24680]", '', str_num)) > 2: return False
-    return True
 
 nums = []
 file_name = "text.txt"
@@ -20,8 +16,7 @@ except:
 with open(file_name, "r") as file:
   for line in file.readlines():
     line = line.replace('\n', '')
-    if not re.match("^[0-9]+$", line): continue
-    if(checkNum(line)):
+    even = re.sub(r"[13579]", '', line)
+    if len(even) <= 2 and int(line[0])%2!=0:
         print("Подходящее число : ", line)
-        even = re.sub(r"[13579]", '', line)
-        print(perev_cifr[line[0]], " ; ", *list(map(lambda x: perev_cifr[x], even)), '\n')
+        print(perev_cifr[line[0]], " ; ", *list(map(lambda x: perev_cifr[x], even)), '\n') #Вывод
