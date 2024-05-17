@@ -62,26 +62,26 @@ print("Матрица E : ")
 printList(e)
 
 summ_ = 0
-for i in range(0, m//2):
-    if i == 0: summ_ -= c[i][j]
+summ_ += c[0][0] #первый угол
+summ_ += c[m-1][0] #второй угол
+for i in range(1, m//2):
     for j in [0, i]:
         summ_ += c[i][j]
-for i in range(m // 2, m):
-    if i == m-1: summ_ -= c[i][j]
+for i in range(m // 2, m-1):
     for j in [0, m-i-1]:
         summ_ += c[i][j]
-print("B С сумма чисел, по периметру области 3 = ", summ_)
+print("B С сумма чисел, по периметру области 3 =", summ_)
 
 mult_ = 1
-for j in range(0, m//2):
-    if j == 0: mult_ /= c[i][j]
+mult_ *= c[m-1][0] #первый угол
+mult_ *= c[m-1][m-1] #второй угол
+for j in range(1, m//2):
     for i in [m-1, m-j-1]:
         mult_ *= c[i][j]
-for j in range(m//2, m):
-    if j == m-1: mult_ /= c[i][j]
+for j in range(m//2, m-1):
     for i in [j, m-1]:
         mult_ *= c[i][j]
-print("В С произведение чисел по периметру области 2 = ", mult_)
+print("В С произведение чисел по периметру области 2 =", mult_)
 
 if summ_ > mult_:
     print("Сумма чисел больше произведения\n")
